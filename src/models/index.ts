@@ -8,3 +8,5 @@ export * from './pay-type.model';
 export * from './distance.model';
 export * from './pay-method.model';
 export * from './travel.model';
+export * from './location.model';
+export * from './distance.model';

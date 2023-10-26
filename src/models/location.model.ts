@@ -1,7 +1,7 @@
 import {Entity, model, property} from '@loopback/repository';
 
 @model()
-export class Distance extends Entity {
+export class Location extends Entity {
   @property({
     type: 'number',
     id: true,
@@ -13,28 +13,34 @@ export class Distance extends Entity {
     type: 'string',
     required: true,
   })
-  origin: string;
+  name: string;
 
   @property({
     type: 'string',
     required: true,
   })
-  finish: string;
+  latitude: string;
 
   @property({
-    type: 'number',
+    type: 'string',
     required: true,
   })
-  meters: number;
+  longitude: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  pointChar: string;
 
 
-  constructor(data?: Partial<Distance>) {
+  constructor(data?: Partial<Location>) {
     super(data);
   }
 }
 
-export interface DistanceRelations {
+export interface LocationRelations {
   // describe navigational properties here
 }
 
-export type DistanceWithRelations = Distance & DistanceRelations;
+export type LocationWithRelations = Location & LocationRelations;

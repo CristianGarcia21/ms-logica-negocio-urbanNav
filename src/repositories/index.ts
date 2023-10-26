@@ -8,3 +8,5 @@ export * from './record.repository';
 export * from './request.repository';
 export * from './status.repository';
 export * from './travel.repository';
+export * from './distance.repository';
+export * from './location.repository';

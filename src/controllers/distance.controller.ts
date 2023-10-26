@@ -37,12 +37,12 @@ export class DistanceController {
         'application/json': {
           schema: getModelSchemaRef(Distance, {
             title: 'NewDistance',
-            exclude: ['id'],
+            
           }),
         },
       },
     })
-    distance: Omit<Distance, 'id'>,
+    distance: Distance,
   ): Promise<Distance> {
     return this.distanceRepository.create(distance);
   }

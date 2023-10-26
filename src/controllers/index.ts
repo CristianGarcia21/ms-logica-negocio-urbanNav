@@ -9,3 +9,5 @@ export * from './pay-type.controller';
 export * from './distance.controller';
 export * from './pay-method.controller';
 export * from './travel.controller';
+export * from './distance.controller';
+export * from './location.controller';
