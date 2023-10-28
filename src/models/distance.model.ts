@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Location} from './location.model';
 
 @model()
 export class Distance extends Entity {
@@ -27,6 +28,8 @@ export class Distance extends Entity {
   })
   meters: number;
 
+  @belongsTo(() => Location)
+  locationId: number;
 
   constructor(data?: Partial<Distance>) {
     super(data);

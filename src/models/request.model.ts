@@ -1,6 +1,9 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Entity, model, property, belongsTo, hasOne} from '@loopback/repository';
 import {Driver} from './driver.model';
 import {Passenger} from './passenger.model';
+import {Status} from './status.model';
+import {Location} from './location.model';
+import {Travel} from './travel.model';
 
 @model()
 export class Request extends Entity {
@@ -34,6 +37,15 @@ export class Request extends Entity {
 
   @belongsTo(() => Passenger)
   passengerId: number;
+
+  @hasOne(() => Status)
+  status: Status;
+
+  @hasOne(() => Location)
+  location: Location;
+
+  @hasOne(() => Travel)
+  travel: Travel;
 
   constructor(data?: Partial<Request>) {
     super(data);
