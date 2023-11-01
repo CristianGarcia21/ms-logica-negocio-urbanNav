@@ -4,15 +4,15 @@ import {Location} from './location.model';
 @model({
   settings:{
     foreignKeys: {
-      fk_locationId: {
+      fk_distance_locationId: {
         name: 'fk_distance_locationId',
-        entity: 'location',
+        entity: 'Location',
         entityKey: 'id',
         foreignKey: 'locationId',
       },
     },
-  }
-})
+  }}
+  )
 export class Distance extends Entity {
   @property({
     type: 'number',

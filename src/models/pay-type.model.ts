@@ -4,9 +4,9 @@ import {PayMethod} from './pay-method.model';
 @model({
   settings:{
     foreignKeys: {
-      fk_requestId: {
-        name: 'fk_pay-type_pay-methodId',
-        entity: 'pay-method',
+      fk_paytype_paymethodId: {
+        name: 'fk_payType_payMethodId',
+        entity: 'PayMethod',
         entityKey: 'id',
         foreignKey: 'payMethodId',
       },

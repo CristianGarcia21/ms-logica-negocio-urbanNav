@@ -5,9 +5,9 @@ import {Distance} from './distance.model';
 @model({
   settings:{
     foreignKeys: {
-      fk_requestId: {
+      fk_location_requestId: {
         name: 'fk_location_requestId',
-        entity: 'request',
+        entity: 'Request',
         entityKey: 'id',
         foreignKey: 'requestId',
       },

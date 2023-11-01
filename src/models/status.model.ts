@@ -4,9 +4,9 @@ import {Request} from './request.model';
 @model({
   settings:{
     foreignKeys: {
-      fk_requestId: {
+      fk_status_requestId: {
         name: 'fk_status_requestId',
-        entity: 'request',
+        entity: 'Request',
         entityKey: 'id',
         foreignKey: 'requestId',
       },

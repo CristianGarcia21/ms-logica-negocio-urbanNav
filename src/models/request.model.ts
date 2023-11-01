@@ -8,15 +8,15 @@ import {Travel} from './travel.model';
 @model({
   settings: {
     foreignKeys: {
-      fk_driverId: {
+      fk_request_driverId: {
         name: 'fk_request_driverId',
-        entity: 'driver',
+        entity: 'Driver',
         entityKey: 'id',
         foreignKey: 'driverId',
       },
-      fk_passengerId: {
+      fk_request_passengerId: {
         name: 'fk_request_passengerId',
-        entity: 'passenger',
+        entity: 'Passenger',
         entityKey: 'id',
         foreignKey: 'passengerId',
       },

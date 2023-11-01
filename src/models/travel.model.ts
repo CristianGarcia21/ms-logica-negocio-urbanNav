@@ -5,15 +5,15 @@ import {Request} from './request.model';
 @model({
   settings:{
     foreignKeys: {
-      fk_requestId: {
+      fk_travel_requestId: {
         name: 'fk_travel_requestId',
-        entity: 'request',
+        entity: 'Request',
         entityKey: 'id',
         foreignKey: 'requestId',
       },
-      fk_payMethodId: {
+      fk_travel_payMethodId: {
         name: 'fk_travel_payMethodId',
-        entity: 'pay-method',
+        entity: 'PayMethod',
         entityKey: 'id',
         foreignKey: 'payMethodId',
       },

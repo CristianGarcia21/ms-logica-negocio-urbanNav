@@ -6,9 +6,9 @@ import {Travel} from './travel.model';
 @model({
   settings:{
     foreignKeys: {
-      fk_requestId: {
-        name: 'fk_pay-method_passengerId',
-        entity: 'passenger',
+      fk_paymethod_passengerId: {
+        name: 'fk_paymethod_passengerId',
+        entity: 'Passenger',
         entityKey: 'id',
         foreignKey: 'passengerId',
       },
