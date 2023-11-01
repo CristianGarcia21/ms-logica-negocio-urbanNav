@@ -2,7 +2,18 @@ import {Entity, model, property, belongsTo, hasOne} from '@loopback/repository';
 import {Request} from './request.model';
 import {Distance} from './distance.model';
 
-@model()
+@model({
+  settings:{
+    foreignKeys: {
+      fk_requestId: {
+        name: 'fk_location_requestId',
+        entity: 'request',
+        entityKey: 'id',
+        foreignKey: 'requestId',
+      },
+    },
+  }
+})
 export class Location extends Entity {
   @property({
     type: 'number',

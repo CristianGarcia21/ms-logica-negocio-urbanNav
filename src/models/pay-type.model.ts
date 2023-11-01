@@ -1,7 +1,18 @@
 import {Entity, model, property, belongsTo} from '@loopback/repository';
 import {PayMethod} from './pay-method.model';
 
-@model()
+@model({
+  settings:{
+    foreignKeys: {
+      fk_requestId: {
+        name: 'fk_pay-type_pay-methodId',
+        entity: 'pay-method',
+        entityKey: 'id',
+        foreignKey: 'payMethodId',
+      },
+    },
+  }
+})
 export class PayType extends Entity {
   @property({
     type: 'number',

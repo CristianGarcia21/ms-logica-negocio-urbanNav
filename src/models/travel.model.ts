@@ -2,7 +2,24 @@ import {Entity, model, property, belongsTo} from '@loopback/repository';
 import {PayMethod} from './pay-method.model';
 import {Request} from './request.model';
 
-@model()
+@model({
+  settings:{
+    foreignKeys: {
+      fk_requestId: {
+        name: 'fk_travel_requestId',
+        entity: 'request',
+        entityKey: 'id',
+        foreignKey: 'requestId',
+      },
+      fk_payMethodId: {
+        name: 'fk_travel_payMethodId',
+        entity: 'pay-method',
+        entityKey: 'id',
+        foreignKey: 'payMethodId',
+      },
+    },
+  }
+})
 export class Travel extends Entity {
   @property({
     type: 'number',

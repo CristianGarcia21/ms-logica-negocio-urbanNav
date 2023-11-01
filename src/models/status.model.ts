@@ -1,7 +1,18 @@
 import {Entity, model, property, belongsTo} from '@loopback/repository';
 import {Request} from './request.model';
 
-@model()
+@model({
+  settings:{
+    foreignKeys: {
+      fk_requestId: {
+        name: 'fk_status_requestId',
+        entity: 'request',
+        entityKey: 'id',
+        foreignKey: 'requestId',
+      },
+    },
+  }
+})
 export class Status extends Entity {
   @property({
     type: 'number',

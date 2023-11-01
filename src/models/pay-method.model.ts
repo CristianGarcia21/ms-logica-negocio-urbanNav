@@ -3,7 +3,18 @@ import {Passenger} from './passenger.model';
 import {PayType} from './pay-type.model';
 import {Travel} from './travel.model';
 
-@model()
+@model({
+  settings:{
+    foreignKeys: {
+      fk_requestId: {
+        name: 'fk_pay-method_passengerId',
+        entity: 'passenger',
+        entityKey: 'id',
+        foreignKey: 'passengerId',
+      },
+    },
+  }
+})
 export class PayMethod extends Entity {
   @property({
     type: 'number',

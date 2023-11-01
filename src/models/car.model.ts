@@ -1,7 +1,18 @@
 import {Entity, model, property, belongsTo} from '@loopback/repository';
 import {Driver} from './driver.model';
 
-@model()
+@model({
+  settings:{
+    foreignKeys: {
+      fk_driverId: {
+        name: 'fk_car_driverId',
+        entity: 'driver',
+        entityKey: 'id',
+        foreignKey: 'driverId',
+      },
+    },
+  }
+})
 export class Car extends Entity {
   @property({
     type: 'number',

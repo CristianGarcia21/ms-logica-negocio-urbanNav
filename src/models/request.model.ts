@@ -5,7 +5,24 @@ import {Status} from './status.model';
 import {Location} from './location.model';
 import {Travel} from './travel.model';
 
-@model()
+@model({
+  settings: {
+    foreignKeys: {
+      fk_driverId: {
+        name: 'fk_request_driverId',
+        entity: 'driver',
+        entityKey: 'id',
+        foreignKey: 'driverId',
+      },
+      fk_passengerId: {
+        name: 'fk_request_passengerId',
+        entity: 'passenger',
+        entityKey: 'id',
+        foreignKey: 'passengerId',
+      },
+    },
+  }
+})
 export class Request extends Entity {
   @property({
     type: 'number',
