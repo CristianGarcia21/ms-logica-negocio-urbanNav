@@ -5,11 +5,11 @@ const config = {
   name: 'mysql',
   connector: 'mysql',
   url: '',
-  host: 'localhost',
+  host: 'ms-logica-db.cazjwg99dnro.us-east-2.rds.amazonaws.com',
   port: 3306,
   user: 'admin',
   password: 'Admin123',
-  database: 'ms-logica-db',
+  database: 'UrbanNavDB',
 };
 
 // Observe application's life cycle to disconnect the datasource when
