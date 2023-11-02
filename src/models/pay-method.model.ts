@@ -1,10 +1,17 @@
-import {Entity, model, property, belongsTo, hasOne, hasMany} from '@loopback/repository';
+import {
+  Entity,
+  belongsTo,
+  hasMany,
+  hasOne,
+  model,
+  property,
+} from '@loopback/repository';
 import {Passenger} from './passenger.model';
 import {PayType} from './pay-type.model';
 import {Travel} from './travel.model';
 
 @model({
-  settings:{
+  settings: {
     foreignKeys: {
       fk_paymethod_passengerId: {
         name: 'fk_paymethod_passengerId',
@@ -13,7 +20,7 @@ import {Travel} from './travel.model';
         foreignKey: 'passengerId',
       },
     },
-  }
+  },
 })
 export class PayMethod extends Entity {
   @property({
@@ -30,10 +37,10 @@ export class PayMethod extends Entity {
   type: string;
 
   @property({
-    type: 'number',
+    type: 'string',
     required: true,
   })
-  price: number;
+  price: string;
 
   @property({
     type: 'number',

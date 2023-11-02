@@ -1,4 +1,4 @@
-import {Entity, model, property, hasOne, hasMany} from '@loopback/repository';
+import {Entity, hasMany, hasOne, model, property} from '@loopback/repository';
 import {Car} from './car.model';
 import {Request} from './request.model';
 
@@ -16,6 +16,12 @@ export class Driver extends Entity {
     required: true,
   })
   name: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  lastname: string;
 
   @property({
     type: 'string',
