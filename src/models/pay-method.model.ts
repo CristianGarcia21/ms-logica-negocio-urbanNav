@@ -43,9 +43,9 @@ export class PayMethod extends Entity {
   price: string;
 
   @property({
-    type: 'number',
+    type: 'string',
   })
-  cardNumber?: number;
+  cardNumber?: string;
 
   @belongsTo(() => Passenger)
   passengerId: number;
