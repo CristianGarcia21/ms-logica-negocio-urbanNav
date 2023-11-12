@@ -29,3 +29,4 @@ export * from './status.controller';
 export * from './travel-pay-method.controller';
 export * from './travel-request.controller';
 export * from './travel.controller';
+export * from './administrador-de-archivos.controller';
