@@ -19,6 +19,8 @@ import {
 } from '@loopback/rest';
 import {Passenger} from '../models';
 import {PassengerRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
+import {ConfiguracionSeguridad} from '../config/configuracion.seguridad';
 
 export class PassengerController {
   constructor(
@@ -58,6 +60,12 @@ export class PassengerController {
     return this.passengerRepository.count(where);
   }
 
+  @authenticate({
+    strategy: 'auth',
+    options: [
+      ConfiguracionSeguridad.permissionsUsuario,ConfiguracionSeguridad.listarAccion,
+    ],
+  })
   @get('/passenger')
   @response(200, {
     description: 'Array of Passenger model instances',

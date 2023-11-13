@@ -19,6 +19,8 @@ import {
 } from '@loopback/rest';
 import {Driver} from '../models';
 import {DriverRepository} from '../repositories';
+import {ConfiguracionSeguridad} from '../config/configuracion.seguridad';
+import {authenticate} from '@loopback/authentication';
 
 export class DriverController {
   constructor(
@@ -58,6 +60,12 @@ export class DriverController {
     return this.driverRepository.count(where);
   }
 
+  @authenticate({
+    strategy: 'auth',
+    options: [
+      ConfiguracionSeguridad.permissionsUsuario,ConfiguracionSeguridad.listarAccion,
+    ],
+  })
   @get('/driver')
   @response(200, {
     description: 'Array of Driver model instances',
