@@ -8,6 +8,8 @@ import {HttpErrors, Request} from '@loopback/rest';
 import {UserProfile} from '@loopback/security';
 import {log} from 'console';
 import parseBearerToken from 'parse-bearer-token';
+import {ConfiguracionSeguridad} from '../config/configuracion.seguridad';
+const fetch = require('node-fetch');
 
 
 
@@ -28,23 +30,37 @@ export class AuthStrategy implements AuthenticationStrategy {
   async authenticate(request: Request): Promise<UserProfile | undefined> {
     let token = parseBearerToken(request);
     console.log(request);
-    
+
     if (token) {
       let idPermissions: string = this.metadata[0].options![0];
       let accion: string = this.metadata[0].options![1];
       console.log(this.metadata);
-      console.log("Conectar con ms-seguridad");
 
-      let continuar:boolean =false;
-      if (continuar){
-        let perfil: UserProfile = Object.assign({
-          permitido:"OK"
-        });
-        return perfil;
-      }else {
-        return undefined;
+      const datos = {token: token, idPermissions: idPermissions, accion: accion};
+      const urlValidarPermisos = `${ConfiguracionSeguridad.enlaceMicroservicioSeguridad}/validate-permissions`;
+      let res = undefined;
+      try{
+        await fetch(urlValidarPermisos, {
+          method: 'post',
+          body: JSON.stringify(datos),
+          headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
+        })
+          .then((res: any) => res.json())
+          .then((json: any) => {
+            res = json;
+          });
+        if (res) {
+          let perfil: UserProfile = Object.assign({
+            permitido: "OK"
+          });
+          return perfil;
+        } else {
+          return undefined;
+        }
+      } catch (e){
+          throw new HttpErrors[401]('No se tiene permisos sobre la accion a ejecutar.');
       }
     }
-    throw new HttpErrors[401]('No es posible ejecutar la acción por falta de un token.')
+    throw new HttpErrors[401]('No es posible ejecutar la acción por falta de un token.');
   }
 }
