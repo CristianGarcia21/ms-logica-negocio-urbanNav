@@ -6,7 +6,6 @@ import {
 import{inject} from '@loopback/context'
 import {HttpErrors, Request} from '@loopback/rest';
 import {UserProfile} from '@loopback/security';
-import {log} from 'console';
 import parseBearerToken from 'parse-bearer-token';
 import {ConfiguracionSeguridad} from '../config/configuracion.seguridad';
 const fetch = require('node-fetch');
@@ -29,7 +28,6 @@ export class AuthStrategy implements AuthenticationStrategy {
 
   async authenticate(request: Request): Promise<UserProfile | undefined> {
     let token = parseBearerToken(request);
-    console.log(request);
 
     if (token) {
       let idPermissions: string = this.metadata[0].options![0];
@@ -43,7 +41,7 @@ export class AuthStrategy implements AuthenticationStrategy {
         await fetch(urlValidarPermisos, {
           method: 'post',
           body: JSON.stringify(datos),
-          headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${token}`},
+          headers: {'Content-Type': 'application/json'},
         })
           .then((res: any) => res.json())
           .then((json: any) => {
