@@ -41,7 +41,7 @@ class Graph<T> {
   }
 
   //generate dijkstra algorithm recursively
-  dijkstra(nodoInicio: T) {
+  dijkstra(nodoInicio: T, nodoDestino: T) {
     const distancias: Map<T, number> = new Map();
     const visitados: Set<T> = new Set();
     this.nodos.forEach((_, nodo) => distancias.set(nodo, Infinity));
@@ -81,7 +81,68 @@ class Graph<T> {
       relajarAristas(nodoSiguiente);
     }
 
-    return distancias;
+    return distancias.get(nodoDestino);
+  }
+
+  dijkstraDestino(nodoInicio: T, nodoDestino: T) {
+    const distancias: Map<T, number> = new Map();
+    const visitados: Set<T> = new Set();
+
+    this.nodos.forEach((_, nodo) => distancias.set(nodo, Infinity));
+    distancias.set(nodoInicio, 0);
+
+    const obtenerNodoNoVisitadoConMenorDistancia = () => {
+      let nodoNoVisitado: T | null = null;
+      this.nodos.forEach((_, nodo) => {
+        if (
+          !visitados.has(nodo) &&
+          (nodoNoVisitado === null ||
+            distancias.get(nodo)! < distancias.get(nodoNoVisitado)!)
+        ) {
+          nodoNoVisitado = nodo;
+        }
+      });
+      return nodoNoVisitado;
+    };
+
+    while (true) {
+      const nodoActual = obtenerNodoNoVisitadoConMenorDistancia();
+      if (nodoActual === null || nodoActual === nodoDestino) {
+        break;
+      }
+
+      visitados.add(nodoActual);
+
+      const vecinos = this.obtenerVecinos(nodoActual);
+      for (const vecino of vecinos) {
+        const distanciaDesdeInicio =
+          distancias.get(nodoActual)! +
+          this.obtenerDistancia(nodoActual, vecino);
+        if (distanciaDesdeInicio < distancias.get(vecino)!) {
+          distancias.set(vecino, distanciaDesdeInicio);
+        }
+      }
+    }
+
+    const distanciaAlDestino = distancias.get(nodoDestino);
+    console.log(
+      `Distancia desde ${nodoInicio} hasta ${nodoDestino}: ${distanciaAlDestino}`,
+    );
+  }
+
+  obtenerDistancia(nodoA: T, nodoB: T): number {
+    // Implementa la lógica para obtener la distancia entre los nodos A y B
+    // Puedes adaptar esta función según la lógica específica de tu aplicación.
+    // Por ejemplo, podrías tener un mapa de distancias precalculadas.
+    // Aquí, simplemente se devuelve 1 como un ejemplo.
+    return 1;
+  }
+
+  obtenerVecinos(nodo: T): T[] {
+    // Implementa la lógica para obtener los nodos vecinos de un nodo dado.
+    // Puedes adaptar esta función según la lógica específica de tu aplicación.
+    // Aquí, simplemente se devuelve un array vacío como ejemplo.
+    return [];
   }
 }
 
