@@ -82,9 +82,9 @@ class Graph<T> {
     }
 
     const distanciaFinal = distancias.get(nodoDestino);
-    const precio = distanciaFinal !== undefined ? Number((distanciaFinal * 0.50).toFixed(2)) : undefined;
+    const precio = distanciaFinal !== undefined ? Number((distanciaFinal * 1.80).toFixed(2)) : undefined;
 
-    return {precio, distanciaFinal};
+    return {precio, distanciaFinal , nodoInicio, nodoDestino};
   }
 
   dijkstraDestino(nodoInicio: T, nodoDestino: T) {
