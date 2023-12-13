@@ -1,4 +1,5 @@
-import Graph from './graph';
+import {log} from 'console';
+import  Graph from './graph';
 
 function mostrarGrafo() {
   const grafo = new Graph<string>();

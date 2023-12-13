@@ -81,7 +81,11 @@ class Graph<T> {
       relajarAristas(nodoSiguiente);
     }
 
-    return distancias.get(nodoDestino);
+    const distanciaFinal = distancias.get(nodoDestino);
+
+    const resultadoFinal = distanciaFinal !== undefined ? distanciaFinal * 1.80 : undefined;
+
+    return resultadoFinal;
   }
 
   dijkstraDestino(nodoInicio: T, nodoDestino: T) {
